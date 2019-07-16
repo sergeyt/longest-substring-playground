@@ -1,22 +1,25 @@
 # k is maximum number of unique chars
-def longest_substring(s, k = 2):
-    if s is None:
-        return s
+def longest_substring(input, k = 2):
+    if input is None:
+        return input
+
     start = 0
-    res = ""
+    result = ""
     freq = {}
     i = 0
-    while i < len(s):
-        c = s[i]
+
+    while i < len(input):
+        c = input[i]
         if c in freq:
             freq[c] += 1
         else:
             freq[c] = 1
+            
         if len(freq) == k + 1:
-            if i - start > len(res):
-                res = s[start:i]
+            if i - start > len(result):
+                result = input[start:i]
             while len(freq) > k:
-                c = s[start]
+                c = input[start]
                 if freq[c] == 1:
                     freq.pop(c, None)
                 else:
@@ -24,7 +27,7 @@ def longest_substring(s, k = 2):
                 start += 1
         i += 1
 
-    if len(freq) <= k and len(s) - start > len(res):
-        return s[start:]
+    if len(freq) <= k and len(input) - start > len(result):
+        return input[start:]
 
-    return res
+    return result
